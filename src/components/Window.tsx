@@ -71,9 +71,11 @@ const Window = ({ window }: WindowProps) => {
       >
         <Rnd
           bounds="parent"
+          disableDragging={window.isMaximized}
+          enableResizing={!window.isMaximized}
           size={{
             width: window.isMaximized ? '100vw' : window.width,
-            height: window.isMaximized ? 'calc(100vh - 60px)' : window.height
+            height: window.isMaximized ? '100vh' : window.height
           }}
           position={{
             x: window.isMaximized ? 0 : window.x,

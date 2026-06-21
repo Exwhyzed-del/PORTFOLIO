@@ -32,7 +32,7 @@ const Desktop = () => {
         .map(window => (
           <Window key={window.id} window={window} />
         ))}
-      <Taskbar />
+      {!isAnyWindowMaximized && <Taskbar />}
     </div>
   );
 };
