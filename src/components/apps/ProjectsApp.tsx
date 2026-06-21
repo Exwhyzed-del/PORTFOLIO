@@ -11,7 +11,7 @@ const projects = [
     githubUrl: null,
     readmeUrl: null,
     liveUrl: 'https://codearena-uc8l.onrender.com/',
-    image: 'https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=CodeArena%20coding%20battle%20platform%20cyberpunk%20theme%20with%20leaderboard%20and%20code%20editor%20dark%20background%20neon%20colors&image_size=square'
+    image: 'https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=cyberpunk%20coding%20arena%20battle%20platform%20with%20glowing%20code%20editor%20neon%20blue%20and%20purple%20dark%20background%20leaderboard%20display&image_size=square'
   },
   {
     id: 2,
@@ -31,7 +31,7 @@ const projects = [
     githubUrl: 'https://github.com/Exwhyzed-del/EXWHYZED_TYPER',
     readmeUrl: 'https://github.com/Exwhyzed-del/EXWHYZED_TYPER/blob/main/Typer/README.md',
     liveUrl: null,
-    image: 'https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=EXWHYZED-TyperPro%20auto%20typer%20software%20cyberpunk%20dark%20theme%20professional%20banner%20with%20keyboard%20and%20code%20elements&image_size=square'
+    image: 'https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=EXWHYZED-TyperPro%20cyberpunk%20auto%20typer%20tool%20with%20glowing%20keyboard%20keys%20typing%20animation%20dark%20tech%20background&image_size=square'
   }
 ];
 
