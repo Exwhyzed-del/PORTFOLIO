@@ -8,7 +8,7 @@ import Taskbar from './Taskbar';
 
 const Desktop = () => {
   const { windows, wallpaper } = useOSStore(state => state);
-  const isAnyWindowMaximized = windows.some(w => w.isOpen && w.isMaximized);
+  const isAnyWindowMaximized = windows.some(w => w.isOpen && w.isMaximized && !w.isMinimized);
 
   return (
     <div

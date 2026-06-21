@@ -13,6 +13,10 @@ export interface WindowState {
   width: number;
   height: number;
   zIndex: number;
+  prevX?: number;
+  prevY?: number;
+  prevWidth?: number;
+  prevHeight?: number;
 }
 
 interface OSState {
@@ -87,7 +91,32 @@ export const useOSStore = create<OSState>()(
         windows: state.windows.map(w => w.id === id ? { ...w, isMinimized: true } : w)
       })),
       maximizeWindow: (id) => set((state) => ({
-        windows: state.windows.map(w => w.id === id ? { ...w, isMaximized: !w.isMaximized } : w)
+        windows: state.windows.map(w => {
+          if (w.id === id) {
+            if (!w.isMaximized) {
+              // Maximize: save previous state
+              return {
+                ...w,
+                isMaximized: true,
+                prevX: w.x,
+                prevY: w.y,
+                prevWidth: w.width,
+                prevHeight: w.height
+              };
+            } else {
+              // Restore: use saved previous state
+              return {
+                ...w,
+                isMaximized: false,
+                x: w.prevX || 100,
+                y: w.prevY || 100,
+                width: w.prevWidth || 800,
+                height: w.prevHeight || 600
+              };
+            }
+          }
+          return w;
+        })
       })),
       focusWindow: (id) => set((state) => ({
         windows: state.windows.map(w => w.id === id ? { ...w, zIndex: ++zIndexCounter } : w),
