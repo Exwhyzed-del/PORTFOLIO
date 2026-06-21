@@ -86,7 +86,12 @@ const TerminalApp = () => {
       'Tools: Git, GitHub, Linux, Docker, Jenkins'
     ],
     projects: () => [
-      '1. EXWHYZED-TyperPro - Smart auto-typer that types anything you paste',
+      '1. DEEPSEEK-AI - Real-time AI media & news verification',
+      '   Detects AI-generated images, deepfake audio, fake news',
+      '   Features floating screenshot button for instant verification',
+      '   GitHub: https://github.com/Exwhyzed-del/DEEPSEEK-AI-',
+      '',
+      '2. EXWHYZED-TyperPro - Smart auto-typer that types anything you paste',
       '   Works across multiple devices via AnyDesk, TeamViewer, etc.',
       '   GitHub: https://github.com/Exwhyzed-del/EXWHYZED_TYPER'
     ],

@@ -5,6 +5,15 @@ import { motion } from 'framer-motion';
 const projects = [
   {
     id: 1,
+    title: 'DEEPSEEK-AI',
+    description: 'Real-time AI that detects AI-generated images, deepfake audio, and verifies news authenticity. Features floating screenshot button for instant verification.',
+    tech: ['Python', 'Flask', 'PyTorch', 'Chrome Extension'],
+    githubUrl: 'https://github.com/Exwhyzed-del/DEEPSEEK-AI-',
+    readmeUrl: 'https://github.com/Exwhyzed-del/DEEPSEEK-AI-/blob/main/README.md',
+    image: 'https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=DEEPSEEK-AI%20DeepShield%20AI%20media%20verification%20cyberpunk%20dark%20theme%20professional%20banner%20with%20security%20shield%20and%20AI%20visual%20elements&image_size=square'
+  },
+  {
+    id: 2,
     title: 'EXWHYZED-TyperPro',
     description: 'Smart auto-typer that types anything you paste. Works across multiple devices via desktop sharing apps like AnyDesk, TeamViewer, etc.',
     tech: ['Python', 'PyAutoGUI', 'Tkinter'],
