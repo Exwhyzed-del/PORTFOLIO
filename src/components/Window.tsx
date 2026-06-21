@@ -72,13 +72,15 @@ const Window = ({ window }: WindowProps) => {
         <Rnd
           bounds="parent"
           size={{
-            width: window.isMaximized ? '100vw' : window.width,
-            height: window.isMaximized ? '100vh' : window.height
+            width: window.isMaximized ? 'calc(100vw - 80px)' : window.width,
+            height: window.isMaximized ? 'calc(100vh - 60px)' : window.height
           }}
           position={{
-            x: window.isMaximized ? 0 : window.x,
+            x: window.isMaximized ? 80 : window.x,
             y: window.isMaximized ? 0 : window.y
           }}
+          minWidth={400}
+          minHeight={300}
           onDragStop={(_, d) => updateWindowPosition(window.id, d.x, d.y, window.width, window.height)}
           onResizeStop={(_, __, ref, ___, delta) => {
             updateWindowPosition(
