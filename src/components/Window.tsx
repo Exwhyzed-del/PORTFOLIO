@@ -72,11 +72,11 @@ const Window = ({ window }: WindowProps) => {
         <Rnd
           bounds="parent"
           size={{
-            width: window.isMaximized ? 'calc(100vw - 80px)' : window.width,
+            width: window.isMaximized ? '100vw' : window.width,
             height: window.isMaximized ? 'calc(100vh - 60px)' : window.height
           }}
           position={{
-            x: window.isMaximized ? 80 : window.x,
+            x: window.isMaximized ? 0 : window.x,
             y: window.isMaximized ? 0 : window.y
           }}
           minWidth={400}
