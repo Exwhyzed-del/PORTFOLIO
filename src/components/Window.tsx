@@ -3,7 +3,7 @@
 import { useOSStore, WindowState } from '@/store/useOSStore';
 import { Rnd } from 'react-rnd';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Minus, Square, Settings, Terminal, Folder, User, Rocket, FileText, Trophy, Gamepad2, Globe } from 'lucide-react';
+import { X, Minus, Square, Settings, Terminal, Folder, User, Rocket, FileText, Trophy, Gamepad2, Globe, Grid3X3 } from 'lucide-react';
 import TerminalApp from './apps/TerminalApp';
 import AboutApp from './apps/AboutApp';
 import ProjectsApp from './apps/ProjectsApp';
@@ -13,6 +13,7 @@ import ResumeApp from './apps/ResumeApp';
 import AchievementsApp from './apps/AchievementsApp';
 import SnakeGameApp from './apps/SnakeGameApp';
 import SocialHubApp from './apps/SocialHubApp';
+import TicTacToeApp from './apps/TicTacToeApp';
 
 interface WindowProps {
   window: WindowState;
@@ -27,6 +28,7 @@ const iconMap: Record<string, any> = {
   'resume': FileText,
   'achievements': Trophy,
   'snake-game': Gamepad2,
+  'tic-tac-toe': Grid3X3,
   'social': Globe
 };
 
@@ -52,6 +54,8 @@ const Window = ({ window }: WindowProps) => {
         return <AchievementsApp />;
       case 'snake-game':
         return <SnakeGameApp />;
+      case 'tic-tac-toe':
+        return <TicTacToeApp />;
       case 'social':
         return <SocialHubApp />;
       default:
@@ -71,17 +75,19 @@ const Window = ({ window }: WindowProps) => {
       >
         <Rnd
           key={`${window.id}-${window.isMaximized}`}
-          bounds="body"
           enableResizing={!window.isMaximized}
           dragAxis="both"
-          default={{
+          position={{
             x: window.isMaximized ? 0 : window.x,
-            y: window.isMaximized ? 0 : window.y,
+            y: window.isMaximized ? 0 : window.y
+          }}
+          size={{
             width: window.isMaximized ? '100vw' : window.width,
             height: window.isMaximized ? '100vh' : window.height
           }}
           minWidth={400}
           minHeight={300}
+          onDrag={(_, d) => updateWindowPosition(window.id, d.x, d.y, window.width, window.height)}
           onDragStop={(_, d) => updateWindowPosition(window.id, d.x, d.y, window.width, window.height)}
           onResizeStop={(_, __, ref, ___, delta) => {
             updateWindowPosition(

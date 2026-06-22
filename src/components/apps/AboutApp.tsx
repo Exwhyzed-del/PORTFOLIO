@@ -11,8 +11,8 @@ const AboutApp = () => {
         animate={{ opacity: 1, y: 0 }}
         className="flex items-center gap-4 mb-6"
       >
-        <div className="w-24 h-24 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
-          <Terminal className="w-12 h-12 text-[#050505]" />
+        <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-primary shadow-[0_0_20px_rgba(0,255,136,0.5)]">
+          <img src="/pic.jpeg" alt="Profile" className="w-full h-full object-cover" />
         </div>
         <div>
           <h1 className="text-3xl font-bold text-primary">Aryan Kumar Sharma</h1>

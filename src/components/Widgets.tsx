@@ -19,11 +19,11 @@ const Widgets = () => {
   }, []);
 
   return (
-    <div className="fixed top-4 right-4 z-40 flex flex-col gap-3">
+    <div className="fixed top-4 right-4 z-40 flex flex-col gap-3 pointer-events-none">
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="glass p-4 rounded-xl"
+        className="glass p-4 rounded-xl pointer-events-auto"
       >
         <div className="text-primary text-2xl font-bold">{time}</div>
         <div className="text-secondary text-sm">{date}</div>
@@ -32,7 +32,7 @@ const Widgets = () => {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1 }}
-        className="glass p-4 rounded-xl"
+        className="glass p-4 rounded-xl pointer-events-auto"
       >
         <div className="text-xs text-gray-400 mb-2">SYSTEM</div>
         <div className="flex justify-between mb-1">

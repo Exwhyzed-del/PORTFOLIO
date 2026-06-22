@@ -30,6 +30,28 @@ Always learning, building, and improving.`
       },
     ] 
   },
+  {
+    name: 'contact',
+    type: 'folder',
+    icon: Folder,
+    children: [
+      {
+        name: 'emails.txt',
+        type: 'file',
+        icon: FileText,
+        content: `Email Addresses:
+1. exwhyzed596@gmail.com
+2. sharmaaryankumar7@gmail.com`
+      },
+      {
+        name: 'phone.txt',
+        type: 'file',
+        icon: FileText,
+        content: `Phone Number:
++91 79037 21185`
+      },
+    ],
+  },
   { 
     name: 'projects', 
     type: 'folder', 

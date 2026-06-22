@@ -21,7 +21,7 @@ const Taskbar = () => {
   const minimizedWindows = windows.filter(w => w.isOpen && w.isMinimized);
 
   return (
-    <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 flex items-center gap-2 px-2 py-2 z-40">
+    <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 flex items-center gap-2 px-2 py-2 z-40 pointer-events-none">
       {minimizedWindows.map((window, i) => {
         const IconComponent = iconMap[window.id];
         return (
@@ -32,7 +32,7 @@ const Taskbar = () => {
             whileHover={{ scale: 1.2 }}
             whileTap={{ scale: 0.9 }}
             onClick={() => restoreWindow(window.id)}
-            className="w-12 h-12 rounded-xl glass border border-primary/30 flex items-center justify-center hover:bg-primary/20 transition-all"
+            className="w-12 h-12 rounded-xl glass border border-primary/30 flex items-center justify-center hover:bg-primary/20 transition-all pointer-events-auto"
           >
             {IconComponent && <IconComponent className="w-6 h-6 text-primary" />}
           </motion.button>

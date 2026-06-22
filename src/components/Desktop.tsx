@@ -1,6 +1,6 @@
 'use client';
 
-import { useOSStore } from '@/store/useOSStore';
+import { useOSStore, useHasHydrated } from '@/store/useOSStore';
 import Dock from './Dock';
 import Window from './Window';
 import Widgets from './Widgets';
@@ -8,13 +8,14 @@ import Taskbar from './Taskbar';
 
 const Desktop = () => {
   const { windows, wallpaper } = useOSStore(state => state);
+  const hasHydrated = useHasHydrated();
   const isAnyWindowMaximized = windows.some(w => w.isOpen && w.isMaximized && !w.isMinimized);
 
   return (
     <div
       className="fixed inset-0 overflow-hidden"
       style={
-        wallpaper
+        hasHydrated && wallpaper
           ? {
               backgroundImage: `url(${wallpaper})`,
               backgroundSize: 'cover',

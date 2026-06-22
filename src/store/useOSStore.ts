@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import { useState, useEffect } from "react";
 
 export interface WindowState {
   id: string;
@@ -33,8 +34,6 @@ interface OSState {
   activeWindowId: string | null;
   wallpaper: string;
   setWallpaper: (wallpaper: string) => void;
-  uploadedWallpapers: string[];
-  addUploadedWallpaper: (wallpaper: string) => void;
 }
 
 const initialWindows: WindowState[] = [
@@ -46,26 +45,22 @@ const initialWindows: WindowState[] = [
   { id: "resume", title: "Resume", icon: "📄", isOpen: false, isMinimized: false, isMaximized: false, x: 350, y: 150, width: 700, height: 600, zIndex: 15 },
   { id: "achievements", title: "Achievements", icon: "🏆", isOpen: false, isMinimized: false, isMaximized: false, x: 400, y: 100, width: 700, height: 600, zIndex: 16 },
   { id: "snake-game", title: "Snake Game", icon: "🐍", isOpen: false, isMinimized: false, isMaximized: false, x: 450, y: 150, width: 600, height: 680, zIndex: 17 },
+  { id: "tic-tac-toe", title: "Tic Tac Toe", icon: "⭕", isOpen: false, isMinimized: false, isMaximized: false, x: 500, y: 100, width: 600, height: 600, zIndex: 18 },
   { id: "social", title: "Social Hub", icon: "🌐", isOpen: false, isMinimized: false, isMaximized: false, x: 550, y: 150, width: 700, height: 500, zIndex: 19 },
 ];
 
 let zIndexCounter = 20;
-
 const defaultWallpaper = "";
 
 export const useOSStore = create<OSState>()(
   persist(
-    (set, get) => ({
+    (set) => ({
       bootSequenceComplete: false,
       setBootSequenceComplete: (complete) => set({ bootSequenceComplete: complete }),
       windows: initialWindows,
       activeWindowId: null,
       wallpaper: defaultWallpaper,
       setWallpaper: (wallpaper) => set({ wallpaper }),
-      uploadedWallpapers: [],
-      addUploadedWallpaper: (wallpaper) => set((state) => ({
-        uploadedWallpapers: [...state.uploadedWallpapers, wallpaper]
-      })),
       openWindow: (window) => set((state) => {
         const existingWindow = state.windows.find(w => w.id === window.id);
         if (existingWindow) {
@@ -94,7 +89,6 @@ export const useOSStore = create<OSState>()(
         windows: state.windows.map(w => {
           if (w.id === id) {
             if (!w.isMaximized) {
-              // Maximize: save previous state
               return {
                 ...w,
                 isMaximized: true,
@@ -104,7 +98,6 @@ export const useOSStore = create<OSState>()(
                 prevHeight: w.height
               };
             } else {
-              // Restore: use saved previous state
               return {
                 ...w,
                 isMaximized: false,
@@ -132,10 +125,19 @@ export const useOSStore = create<OSState>()(
     }),
     {
       name: 'aryan-os-storage',
-      partialize: (state) => ({ 
-        wallpaper: state.wallpaper, 
-        uploadedWallpapers: state.uploadedWallpapers 
-      }),
+      partialize: (state) => ({ wallpaper: state.wallpaper }),
     }
   )
 );
+
+export const useHasHydrated = () => {
+  const [hydrated, setHydrated] = useState(false);
+
+  useEffect(() => {
+    const unsubscribe = useOSStore.persist.onFinishHydration(() => setHydrated(true));
+    if (useOSStore.persist.hasHydrated()) setHydrated(true);
+    return unsubscribe;
+  }, []);
+
+  return hydrated;
+};
